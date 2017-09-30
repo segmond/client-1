@@ -195,7 +195,7 @@ function configurePush() {
 
 function persistRouteState(): AsyncAction {
   return (dispatch, getState) => {
-    const {chat: initialConversation, config: initialTab, routeTree: routeState} = getState()
+    const {chat: {initialConversation}, config: {initialTab}, routeTree: {routeState}} = getState()
     const initialLoadFinished = initialTab === null && initialConversation === null
     console.log(
       'persistRouteState: initialTab:',
