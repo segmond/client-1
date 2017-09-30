@@ -127,10 +127,10 @@ function* navBasedOnLoginState() {
       yield put(appLink(initialLink))
     } else if (initialTab && isValidInitialTab(initialTab)) {
       // only do this once
-      yield put(setInitialTab(null))
       if (!launchedViaPush) {
         yield put(navigateTo([initialTab]))
       }
+      yield put(setInitialTab(null))
     } else {
       yield put(navigateTo([peopleTab]))
     }

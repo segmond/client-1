@@ -195,7 +195,8 @@ function configurePush() {
 
 function persistRouteState(): AsyncAction {
   return (dispatch, getState) => {
-    const routeState = getState().routeTree.routeState
+    const state = getState()
+    const routeState = state.routeTree.routeState
     const toWrite = {}
 
     const selectedTab = routeState.selected
@@ -273,10 +274,14 @@ function loadRouteState(): AsyncAction {
 
             if (item.tab) {
               dispatch(setInitialTab(item.tab))
+            } else {
+              dispatch(setInitialTab(null))
             }
 
             if (item.selectedConversationIDKey) {
               dispatch(setInitialConversation(item.selectedConversationIDKey))
+            } else {
+              dispatch(setInitialConversation(null))
             }
           })
         })

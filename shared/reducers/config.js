@@ -23,7 +23,7 @@ const initialState: Constants.State = {
   followers: {},
   following: {},
   globalError: null,
-  initialTab: null,
+  initialTab: undefined,
   initialLink: null,
   kbfsPath: Constants.defaultKBFSPath,
   launchedViaPush: false,
