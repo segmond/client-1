@@ -252,10 +252,14 @@ function loadRouteState(): AsyncAction {
           console.log('loadRouteState: got:', s)
           if (err) {
             console.warn('loadRouteState: Error getting routeState:', err)
+            dispatch(setInitialTab(null))
+            dispatch(setInitialConversation(null))
             return
           }
 
           if (!s) {
+            dispatch(setInitialTab(null))
+            dispatch(setInitialConversation(null))
             return
           }
 
@@ -274,6 +278,8 @@ function loadRouteState(): AsyncAction {
             err && console.warn('loadRouteState: Error clearing routeState:', err)
 
             if (!item) {
+              dispatch(setInitialTab(null))
+              dispatch(setInitialConversation(null))
               return
             }
 
