@@ -272,6 +272,7 @@ function reducer(state: Constants.State = initialState, action: Constants.Action
       return state.set('editingMessage', action.payload.message)
     }
     case 'chat:setInitialConversation': {
+      console.log('RouteState: setInitialConversation', action.payload.conversationIDKey)
       return state.set('initialConversation', action.payload.conversationIDKey)
     }
     case 'chat:setPreviousConversation': {

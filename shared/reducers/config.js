@@ -179,6 +179,7 @@ export default function(state: Constants.State = initialState, action: Action): 
     }
 
     case 'config:setInitialTab': {
+      console.log('RouteState: setInitialTab', action.payload.tab)
       return {
         ...state,
         initialTab: action.payload.tab,
