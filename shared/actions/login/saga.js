@@ -116,6 +116,26 @@ function* navBasedOnLoginState() {
     loginError,
   } = yield select(selector)
 
+  console.log(
+    'RouteState',
+    'loggedIn',
+    loggedIn,
+    'registered',
+    registered,
+    'initialTab',
+    initialTab,
+    'isValid initialTab',
+    initialTab && isValidInitialTab(initialTab),
+    'initialLink',
+    initialLink,
+    'justDeletedSelf',
+    justDeletedSelf,
+    'launchedViaPush',
+    launchedViaPush,
+    'loginError',
+    loginError
+  )
+
   if (justDeletedSelf) {
     yield put(navigateTo([loginTab]))
   } else if (loggedIn) {
@@ -125,10 +145,15 @@ function* navBasedOnLoginState() {
     } else if (initialLink) {
       yield put(setInitialLink(null))
       yield put(appLink(initialLink))
-    } else if (initialTab && isValidInitialTab(initialTab)) {
-      // only do this once
-      if (!launchedViaPush) {
-        yield put(navigateTo([initialTab]))
+    } else if (initialTab) {
+      if (isValidInitialTab(initialTab)) {
+        // only do this once
+        if (!launchedViaPush) {
+          console.log('RouteState navigating to initial tab')
+          yield put(navigateTo([initialTab]))
+        }
+      } else {
+        yield put(navigateTo([peopleTab]))
       }
       yield put(setInitialTab(null))
     } else {
