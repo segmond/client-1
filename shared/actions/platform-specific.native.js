@@ -195,8 +195,20 @@ function configurePush() {
 
 function persistRouteState(): AsyncAction {
   return (dispatch, getState) => {
-    const state = getState()
-    const routeState = state.routeTree.routeState
+    const {chat: initialConversation, config: initialTab, routeTree: routeState} = getState()
+    const initialLoadFinished = initialTab === null && initialConversation === null
+    console.log(
+      'persistRouteState: initialTab:',
+      initialTab,
+      'initialConversation:',
+      initialConversation,
+      'initialLoadFinished:',
+      initialLoadFinished ? 'true' : 'false (skipping)'
+    )
+    if (!initialLoadFinished) {
+      return
+    }
+
     const toWrite = {}
 
     const selectedTab = routeState.selected
