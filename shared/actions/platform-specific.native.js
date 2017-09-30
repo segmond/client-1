@@ -200,9 +200,9 @@ function persistRouteState(): AsyncAction {
     console.log(
       'persistRouteState: initialTab:',
       initialTab,
-      'initialConversation:',
+      ', initialConversation:',
       initialConversation,
-      'initialLoadFinished:',
+      ', initialLoadFinished:',
       initialLoadFinished ? 'true' : 'false (skipping)'
     )
     if (!initialLoadFinished) {
